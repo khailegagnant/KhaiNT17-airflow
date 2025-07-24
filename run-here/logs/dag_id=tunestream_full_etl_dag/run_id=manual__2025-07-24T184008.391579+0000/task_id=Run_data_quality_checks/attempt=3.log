@@ -1,0 +1,51 @@
+[2025-07-24T19:05:55.193+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.Run_data_quality_checks manual__2025-07-24T18:40:08.391579+00:00 [queued]>
+[2025-07-24T19:05:55.210+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.Run_data_quality_checks manual__2025-07-24T18:40:08.391579+00:00 [queued]>
+[2025-07-24T19:05:55.210+0000] {taskinstance.py:2170} INFO - Starting attempt 3 of 4
+[2025-07-24T19:05:55.230+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): Run_data_quality_checks> on 2025-07-24 18:40:08.391579+00:00
+[2025-07-24T19:05:55.240+0000] {standard_task_runner.py:60} INFO - Started process 2449 to run task
+[2025-07-24T19:05:55.244+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'tunestream_full_etl_dag', 'Run_data_quality_checks', 'manual__2025-07-24T18:40:08.391579+00:00', '--job-id', '132', '--raw', '--subdir', 'DAGS_FOLDER/step12345.py', '--cfg-path', '/tmp/tmp8dpkla2g']
+[2025-07-24T19:05:55.249+0000] {standard_task_runner.py:88} INFO - Job 132: Subtask Run_data_quality_checks
+[2025-07-24T19:05:55.307+0000] {task_command.py:423} INFO - Running <TaskInstance: tunestream_full_etl_dag.Run_data_quality_checks manual__2025-07-24T18:40:08.391579+00:00 [running]> on host 737498b59352
+[2025-07-24T19:05:55.381+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tunestream_full_etl_dag' AIRFLOW_CTX_TASK_ID='Run_data_quality_checks' AIRFLOW_CTX_EXECUTION_DATE='2025-07-24T18:40:08.391579+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-24T18:40:08.391579+00:00'
+[2025-07-24T19:05:55.385+0000] {logging_mixin.py:188} INFO - check: select COUNT(*) as null_rows from ***.artists where artistid is null or name is null or location is null or lattitude is null or longitude is null
+[2025-07-24T19:05:55.394+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:05:55.401+0000] {sql.py:450} INFO - Running statement: select COUNT(*) as null_rows from ***.artists where artistid is null or name is null or location is null or lattitude is null or longitude is null, parameters: None
+[2025-07-24T19:05:55.412+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:05:55.414+0000] {logging_mixin.py:188} INFO - check: SELECT COUNT(*) FROM songs WHERE songid IS NULL or title is null or artistid is null or year is null or duration is null 
+[2025-07-24T19:05:55.423+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:05:55.427+0000] {sql.py:450} INFO - Running statement: SELECT COUNT(*) FROM songs WHERE songid IS NULL or title is null or artistid is null or year is null or duration is null , parameters: None
+[2025-07-24T19:05:55.428+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:05:55.429+0000] {logging_mixin.py:188} INFO - check: SELECT COUNT(*) FROM artists WHERE artist_id IS NULL
+[2025-07-24T19:05:55.438+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:05:55.443+0000] {sql.py:450} INFO - Running statement: SELECT COUNT(*) FROM artists WHERE artist_id IS NULL, parameters: None
+[2025-07-24T19:05:55.444+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/decorators/base.py", line 241, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/step12345.py", line 259, in Run_data_quality_checks
+    records = postgres_hook.get_records(sql)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 261, in get_records
+    return self.run(sql=sql, parameters=parameters, handler=fetch_all_handler)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 398, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 455, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UndefinedColumn: column "artist_id" does not exist
+LINE 1: SELECT COUNT(*) FROM artists WHERE artist_id IS NULL
+                                           ^
+HINT:  Perhaps you meant to reference the column "artists.artistid".
+
+[2025-07-24T19:05:55.462+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=tunestream_full_etl_dag, task_id=Run_data_quality_checks, execution_date=20250724T184008, start_date=20250724T190555, end_date=20250724T190555
+[2025-07-24T19:05:55.485+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 132 for task Run_data_quality_checks (column "artist_id" does not exist
+LINE 1: SELECT COUNT(*) FROM artists WHERE artist_id IS NULL
+                                           ^
+HINT:  Perhaps you meant to reference the column "artists.artistid".
+; 2449)
+[2025-07-24T19:05:55.538+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-07-24T19:05:55.565+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

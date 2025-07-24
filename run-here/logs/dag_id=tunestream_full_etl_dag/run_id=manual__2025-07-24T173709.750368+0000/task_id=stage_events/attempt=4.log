@@ -1,0 +1,31 @@
+[2025-07-24T17:52:38.215+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.stage_events manual__2025-07-24T17:37:09.750368+00:00 [queued]>
+[2025-07-24T17:52:38.232+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.stage_events manual__2025-07-24T17:37:09.750368+00:00 [queued]>
+[2025-07-24T17:52:38.236+0000] {taskinstance.py:2170} INFO - Starting attempt 4 of 4
+[2025-07-24T17:52:38.263+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): stage_events> on 2025-07-24 17:37:09.750368+00:00
+[2025-07-24T17:52:38.277+0000] {standard_task_runner.py:60} INFO - Started process 1165 to run task
+[2025-07-24T17:52:38.287+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'tunestream_full_etl_dag', 'stage_events', 'manual__2025-07-24T17:37:09.750368+00:00', '--job-id', '70', '--raw', '--subdir', 'DAGS_FOLDER/step12345.py', '--cfg-path', '/tmp/tmpesl7b7ct']
+[2025-07-24T17:52:38.291+0000] {standard_task_runner.py:88} INFO - Job 70: Subtask stage_events
+[2025-07-24T17:52:38.075+0000] {task_command.py:423} INFO - Running <TaskInstance: tunestream_full_etl_dag.stage_events manual__2025-07-24T17:37:09.750368+00:00 [running]> on host 737498b59352
+[2025-07-24T17:52:38.252+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tunestream_full_etl_dag' AIRFLOW_CTX_TASK_ID='stage_events' AIRFLOW_CTX_EXECUTION_DATE='2025-07-24T17:37:09.750368+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-24T17:37:09.750368+00:00'
+[2025-07-24T17:52:38.310+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T17:52:38.350+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/decorators/base.py", line 241, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/step12345.py", line 150, in stage_events_task
+    json_to_sql("postgres_local","staging_events",LOG_DATA_PATH,event_columns)
+  File "/opt/airflow/dags/step12345.py", line 75, in json_to_sql
+    cur.execute(f"TRUNCATE TABLE {table_name};")
+psycopg2.errors.UndefinedTable: relation "staging_events" does not exist
+
+[2025-07-24T17:52:38.440+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=tunestream_full_etl_dag, task_id=stage_events, execution_date=20250724T173709, start_date=20250724T175238, end_date=20250724T175238
+[2025-07-24T17:52:38.477+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 70 for task stage_events (relation "staging_events" does not exist
+; 1165)
+[2025-07-24T17:52:38.497+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-07-24T17:52:38.613+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

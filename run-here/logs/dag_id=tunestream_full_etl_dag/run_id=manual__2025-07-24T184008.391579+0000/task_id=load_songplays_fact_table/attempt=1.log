@@ -1,0 +1,36 @@
+[2025-07-24T18:40:24.310+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.load_songplays_fact_table manual__2025-07-24T18:40:08.391579+00:00 [queued]>
+[2025-07-24T18:40:24.331+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.load_songplays_fact_table manual__2025-07-24T18:40:08.391579+00:00 [queued]>
+[2025-07-24T18:40:24.333+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 4
+[2025-07-24T18:40:24.362+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): load_songplays_fact_table> on 2025-07-24 18:40:08.391579+00:00
+[2025-07-24T18:40:24.369+0000] {standard_task_runner.py:60} INFO - Started process 1978 to run task
+[2025-07-24T18:40:24.377+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'tunestream_full_etl_dag', 'load_songplays_fact_table', 'manual__2025-07-24T18:40:08.391579+00:00', '--job-id', '102', '--raw', '--subdir', 'DAGS_FOLDER/step12345.py', '--cfg-path', '/tmp/tmpkmc7gxfr']
+[2025-07-24T18:40:24.380+0000] {standard_task_runner.py:88} INFO - Job 102: Subtask load_songplays_fact_table
+[2025-07-24T18:40:24.458+0000] {task_command.py:423} INFO - Running <TaskInstance: tunestream_full_etl_dag.load_songplays_fact_table manual__2025-07-24T18:40:08.391579+00:00 [running]> on host 737498b59352
+[2025-07-24T18:40:24.615+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tunestream_full_etl_dag' AIRFLOW_CTX_TASK_ID='load_songplays_fact_table' AIRFLOW_CTX_EXECUTION_DATE='2025-07-24T18:40:08.391579+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-24T18:40:08.391579+00:00'
+[2025-07-24T18:40:24.618+0000] {logging_mixin.py:188} INFO - Executing transformation for table: songplays
+[2025-07-24T18:40:24.657+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T18:40:24.666+0000] {sql.py:450} INFO - Running statement: TRUNCATE TABLE songplays; INSERT INTO songplays 
+        SELECT
+                md5(events.sessionid::text || events.start_time::text) songplay_id,
+                events.start_time,
+                events.userid,
+                events.level,
+                songs.song_id,
+                songs.artist_id,
+                events.sessionid,
+                events.location,
+                events.useragent
+                FROM (SELECT TIMESTAMP 'epoch' + ts/1000 * interval '1 second' AS start_time, *
+            FROM staging_events
+            WHERE page='NextSong') events
+            LEFT JOIN staging_songs songs
+            ON events.song = songs.title
+                AND events.artist = songs.artist_name
+                AND events.length = songs.duration
+    , parameters: None
+[2025-07-24T18:40:24.780+0000] {sql.py:459} INFO - Rows affected: 6820
+[2025-07-24T18:40:24.792+0000] {logging_mixin.py:188} INFO - Successfully loaded data into songplays.
+[2025-07-24T18:40:24.793+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-07-24T18:40:24.802+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=tunestream_full_etl_dag, task_id=load_songplays_fact_table, execution_date=20250724T184008, start_date=20250724T184024, end_date=20250724T184024
+[2025-07-24T18:40:24.838+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-07-24T18:40:24.869+0000] {taskinstance.py:3280} INFO - 4 downstream tasks scheduled from follow-on schedule check

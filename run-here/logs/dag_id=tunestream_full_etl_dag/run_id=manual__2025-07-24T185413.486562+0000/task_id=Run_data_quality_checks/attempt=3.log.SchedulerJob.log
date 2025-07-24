@@ -1,0 +1,1 @@
+[2025-07-24T19:04:42.671+0000] {scheduler_job_runner.py:781} ERROR - Executor reports task instance <TaskInstance: tunestream_full_etl_dag.Run_data_quality_checks manual__2025-07-24T18:54:13.486562+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

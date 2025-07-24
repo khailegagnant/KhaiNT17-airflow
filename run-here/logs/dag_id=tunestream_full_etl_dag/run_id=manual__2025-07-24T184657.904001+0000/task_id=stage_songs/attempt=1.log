@@ -1,0 +1,16 @@
+[2025-07-24T18:47:06.010+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.stage_songs manual__2025-07-24T18:46:57.904001+00:00 [queued]>
+[2025-07-24T18:47:06.031+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.stage_songs manual__2025-07-24T18:46:57.904001+00:00 [queued]>
+[2025-07-24T18:47:06.032+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 4
+[2025-07-24T18:47:06.070+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): stage_songs> on 2025-07-24 18:46:57.904001+00:00
+[2025-07-24T18:47:06.078+0000] {standard_task_runner.py:60} INFO - Started process 2093 to run task
+[2025-07-24T18:47:06.178+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'tunestream_full_etl_dag', 'stage_songs', 'manual__2025-07-24T18:46:57.904001+00:00', '--job-id', '108', '--raw', '--subdir', 'DAGS_FOLDER/step12345.py', '--cfg-path', '/tmp/tmp7n5vysu7']
+[2025-07-24T18:47:06.189+0000] {standard_task_runner.py:88} INFO - Job 108: Subtask stage_songs
+[2025-07-24T18:47:06.332+0000] {task_command.py:423} INFO - Running <TaskInstance: tunestream_full_etl_dag.stage_songs manual__2025-07-24T18:46:57.904001+00:00 [running]> on host 737498b59352
+[2025-07-24T18:47:06.536+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tunestream_full_etl_dag' AIRFLOW_CTX_TASK_ID='stage_songs' AIRFLOW_CTX_EXECUTION_DATE='2025-07-24T18:46:57.904001+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-24T18:46:57.904001+00:00'
+[2025-07-24T18:47:06.584+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T18:47:06.611+0000] {logging_mixin.py:188} INFO - Found 71 json files to process in '/opt/***/data/song_data'.
+[2025-07-24T18:47:06.841+0000] {logging_mixin.py:188} INFO - Staging for table 'staging_songs' complete. Inserted 71 rows.
+[2025-07-24T18:47:06.843+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-07-24T18:47:06.852+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=tunestream_full_etl_dag, task_id=stage_songs, execution_date=20250724T184657, start_date=20250724T184706, end_date=20250724T184706
+[2025-07-24T18:47:06.979+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-07-24T18:47:07.071+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

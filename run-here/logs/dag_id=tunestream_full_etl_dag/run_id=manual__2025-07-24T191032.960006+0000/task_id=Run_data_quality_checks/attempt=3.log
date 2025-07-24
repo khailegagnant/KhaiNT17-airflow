@@ -1,0 +1,46 @@
+[2025-07-24T19:21:30.865+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.Run_data_quality_checks manual__2025-07-24T19:10:32.960006+00:00 [queued]>
+[2025-07-24T19:21:30.881+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tunestream_full_etl_dag.Run_data_quality_checks manual__2025-07-24T19:10:32.960006+00:00 [queued]>
+[2025-07-24T19:21:30.881+0000] {taskinstance.py:2170} INFO - Starting attempt 3 of 4
+[2025-07-24T19:21:30.902+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): Run_data_quality_checks> on 2025-07-24 19:10:32.960006+00:00
+[2025-07-24T19:21:30.914+0000] {standard_task_runner.py:60} INFO - Started process 2757 to run task
+[2025-07-24T19:21:30.924+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'tunestream_full_etl_dag', 'Run_data_quality_checks', 'manual__2025-07-24T19:10:32.960006+00:00', '--job-id', '163', '--raw', '--subdir', 'DAGS_FOLDER/step12345.py', '--cfg-path', '/tmp/tmpkwx1smgq']
+[2025-07-24T19:21:30.928+0000] {standard_task_runner.py:88} INFO - Job 163: Subtask Run_data_quality_checks
+[2025-07-24T19:21:31.012+0000] {task_command.py:423} INFO - Running <TaskInstance: tunestream_full_etl_dag.Run_data_quality_checks manual__2025-07-24T19:10:32.960006+00:00 [running]> on host 737498b59352
+[2025-07-24T19:21:31.118+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tunestream_full_etl_dag' AIRFLOW_CTX_TASK_ID='Run_data_quality_checks' AIRFLOW_CTX_EXECUTION_DATE='2025-07-24T19:10:32.960006+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-24T19:10:32.960006+00:00'
+[2025-07-24T19:21:31.121+0000] {logging_mixin.py:188} INFO - check: select COUNT(*) as null_rows from ***.artists where artistid is null or name is null or location is null or lattitude is null or longitude is null
+[2025-07-24T19:21:31.137+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:21:31.144+0000] {sql.py:450} INFO - Running statement: select COUNT(*) as null_rows from ***.artists where artistid is null or name is null or location is null or lattitude is null or longitude is null, parameters: None
+[2025-07-24T19:21:31.147+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:21:31.148+0000] {logging_mixin.py:188} INFO - check: SELECT COUNT(*) FROM songs WHERE songid IS NULL or title is null or artistid is null or year is null or duration is null 
+[2025-07-24T19:21:31.159+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:21:31.171+0000] {sql.py:450} INFO - Running statement: SELECT COUNT(*) FROM songs WHERE songid IS NULL or title is null or artistid is null or year is null or duration is null , parameters: None
+[2025-07-24T19:21:31.176+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:21:31.177+0000] {logging_mixin.py:188} INFO - check: select COUNT(*) as null_rows from ***.songplays where playid is null or start_time is null or userid is null or level is null or songid is null or artistid is null or sessionid is null or location is null or user_agent is null
+[2025-07-24T19:21:31.185+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:21:31.190+0000] {sql.py:450} INFO - Running statement: select COUNT(*) as null_rows from ***.songplays where playid is null or start_time is null or userid is null or level is null or songid is null or artistid is null or sessionid is null or location is null or user_agent is null, parameters: None
+[2025-07-24T19:21:31.210+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:21:31.211+0000] {logging_mixin.py:188} INFO - check: select count(*) as null_rows from ***."time" where start_time is null or hour is null or day is null or week is null or month is null or year is null or weekday is null
+[2025-07-24T19:21:31.218+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:21:31.225+0000] {sql.py:450} INFO - Running statement: select count(*) as null_rows from ***."time" where start_time is null or hour is null or day is null or week is null or month is null or year is null or weekday is null, parameters: None
+[2025-07-24T19:21:31.231+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:21:31.232+0000] {logging_mixin.py:188} INFO - check: select count(*) as null_rows from ***.users where userid is null or first_name is null or last_name is null or gender is null or level is null
+[2025-07-24T19:21:31.239+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:21:31.244+0000] {sql.py:450} INFO - Running statement: select count(*) as null_rows from ***.users where userid is null or first_name is null or last_name is null or gender is null or level is null, parameters: None
+[2025-07-24T19:21:31.246+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:21:31.247+0000] {logging_mixin.py:188} INFO - check: select COUNT(*) from (select userid, COUNT(*) from users group by userid having COUNT(*) > 1) as duplicates
+[2025-07-24T19:21:31.254+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:21:31.260+0000] {sql.py:450} INFO - Running statement: select COUNT(*) from (select userid, COUNT(*) from users group by userid having COUNT(*) > 1) as duplicates, parameters: None
+[2025-07-24T19:21:31.262+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:21:31.263+0000] {logging_mixin.py:188} INFO - check: select COUNT(*) from (select songid, COUNT(*) from songs group by songid having COUNT(*) > 1) as duplicates
+[2025-07-24T19:21:31.276+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:21:31.330+0000] {sql.py:450} INFO - Running statement: select COUNT(*) from (select songid, COUNT(*) from songs group by songid having COUNT(*) > 1) as duplicates, parameters: None
+[2025-07-24T19:21:31.336+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:21:31.338+0000] {logging_mixin.py:188} INFO - check: select COUNT(*) from (select artistid, COUNT(*) from artists group by artistid having COUNT(*) > 1) as duplicates
+[2025-07-24T19:21:31.354+0000] {base.py:83} INFO - Using connection ID 'postgres_local' for task execution.
+[2025-07-24T19:21:31.369+0000] {sql.py:450} INFO - Running statement: select COUNT(*) from (select artistid, COUNT(*) from artists group by artistid having COUNT(*) > 1) as duplicates, parameters: None
+[2025-07-24T19:21:31.372+0000] {sql.py:459} INFO - Rows affected: 1
+[2025-07-24T19:21:31.375+0000] {logging_mixin.py:188} INFO - PROBLEMS FOUND, REFER TO ABOVE ERROR MESSAGES. REQUEST IMMEDIATE ATTENTION!
+[2025-07-24T19:21:31.376+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-07-24T19:21:31.389+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=tunestream_full_etl_dag, task_id=Run_data_quality_checks, execution_date=20250724T191032, start_date=20250724T192130, end_date=20250724T192131
+[2025-07-24T19:21:31.419+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-07-24T19:21:31.445+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
