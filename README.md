@@ -12,3 +12,8 @@ The task is done
 ![alt text](image-2.png)
 
 **_NOTE_**: The module psycopg2 is installed through docker.
+
+
+
+
+The final run-id and its log can be found at ![final_run_logs](run-here/logs/dag_id=tunestream_full_etl_dag/run_id=manual__2025-07-24T191659.317059+0000)
