@@ -1,5 +1,5 @@
-I set up a folder called run-here to use docker-compose
-The python DAG file is at run-here/dags/step12345.py
+I set up a folder called run-here to use docker-compose.
+The python DAG file is at run-here/dags/step12345.py.
 Below is the connection set up.
 ![alt text](image.png)
 
